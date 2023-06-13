@@ -1,28 +1,21 @@
-let item = document.querySelector('.item')
-let placeholders = document.querySelectorAll('.placeholder')
+let upBtn = document.querySelector('.up-button')
+let downBtn = document.querySelector('.down-button')
+let sidebar = document.querySelector('.sidebar')
+let mainSlide = document.querySelector('.main-slide')
 
-item.ondragstart = (e) => {
-  setTimeout(() => {
-    e.target.classList.add('hide')
-  }, 0);
-}
+let slidesCount = mainSlide.querySelectorAll('div').length
+let slideIndex = 0
 
-item.ondragend = (e) => {
-  e.target.classList.remove('hide')
-}
-
-for (let placeholder of placeholders) {
-  placeholder.ondragover = (e) => {
-    e.preventDefault()
-  }
-  placeholder.ondragenter = (e) => {
-    e.target.classList.add('hovered')
-  }
-  placeholder.ondragleave = (e) => {
-    e.target.classList.remove('hovered')
-  }
-  placeholder.ondrop = (e) => {
-    e.target.append(item)
-    e.target.classList.remove('hovered')
+function changeSlide(direction) {
+  if (direction === 'up') {
+    slideIndex++
+    if (slideIndex === slidesCount) {
+      slideIndex = 0
+    }
+  } else if (direction === 'down') {
+    slideIndex--
+    if (slideIndex < 0) { 
+      slideIndex = slidesCount - 1
+    }
   }
 }
