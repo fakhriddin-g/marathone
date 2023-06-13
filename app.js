@@ -1,0 +1,8 @@
+let slides = document.querySelectorAll('.slide')
+
+slides.forEach(slide => {
+  slide.onclick = () => {
+    slides.forEach(slide => slide.classList.remove('active'))
+    slide.classList.add('active')
+  }
+})
